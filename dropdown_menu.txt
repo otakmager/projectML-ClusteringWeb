@@ -1,0 +1,128 @@
+Dropdown menu 18 inputan
+{
+   Nama
+   value = OptionText-1
+   value = OptionText-2
+}
+
+==========================
+'lymphatic','bof','bolc',
+'bols','bp','e',
+'r','eu','lnd',
+'lnu','cil','din',
+'cin','cis','sf',
+'do','eon','nodes'
+==========================
+
+lymphatics: 
+1 = normal 
+2 = arched
+3 = deformed
+4 = displaced
+
+block of affere: 
+1 = no
+2 = yes
+
+bl. of lymph. c: 
+1 = no
+2 = yes
+
+==========================
+'bols','bp','e',
+
+bl. of lymph. s: 
+1 = no
+2 = yes
+
+by pass: 
+1 = no
+2 = yes
+
+extravasates:
+1 = no
+2 = yes
+
+==========================
+'r','eu','lnd',
+
+regeneration of:
+1 = no
+2 = yes
+
+early uptake in:
+1 = no
+2 = yes
+
+lym.nodes dimin:
+0 = 0
+1 = 1
+2 = 2
+3 = 3
+
+==========================
+'lnu','cil','din',
+
+lym.nodes enlar:
+1 = 1
+2 = 2
+3 = 3
+4 = 4
+
+changes in lym.: bean, oval, round
+1 = bean
+2 = oval
+3 = round
+
+defect in node:
+1 = no
+2 = lacunar
+3 = lac. marginal
+4 = lac. central
+
+==========================
+'cin','cis','sf',
+
+changes in node:
+1 = no
+2 = lacunar
+3 = lac. margin
+4 = lac. central
+
+changes in stru: 
+1 = no 
+2 = grainy
+3 = drop-like
+4 = coarse
+5 = diluted
+6 = reticular
+7 = stripped
+8 = faint
+
+special forms: 
+1 = no
+2 = chalices
+3 = vesicles
+
+==========================
+'do','eon','nodes'
+
+dislocation of:
+1 = no
+2 = yes
+
+exclusion of no:
+1 = no
+2 = yes
+
+no. of nodes in: 
+1 = 0-9
+2 = 10-19
+3 = 20-29
+4 = 30-39
+5 = 40-49
+6 = 50-59
+7 = 60-69
+8 = >=70
+
+==========================

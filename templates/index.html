@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Project ML - Classification</title>
+
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+
+    <!-- Custom stlylesheet -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="classification" class="section">
+      <div class="section-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="classification-cta">
+                <h1>Lymph Diseases Prediction</h1>
+                <p>
+                  Prediksi kelainan pada sistem saluran getah bening yang
+                  berfungsi sebagai sistem kekebalan tubuh. Terdapat 4 macam
+                  hasil klasifikasi: normal find, metastases, malign lymph,
+                  fibrosis.
+                </p>
+                <h2>Hasil Prediksi</h2>
+                <h3 id="res">{{prediction}}</h3>
+              </div>
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+              <div class="classification-form">
+                <form action="{{ url_for('predict') }}" method="post">
+                  <!-- Dropdown menu 1 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">lymphatics</span>
+                        <select class="form-control" name="lymphatic[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">normal</option>
+                          <option value="2">arched</option>
+                          <option value="3">deformed</option>
+                          <option value="4">displaced</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">block of affere</span>
+                        <select class="form-control" name="bof[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">bl. of lymph. c</span>
+                        <select class="form-control" name="bolc[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 1 END -->
+                  <!-- Dropdown menu 2 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">bl. of lymph. s</span>
+                        <select class="form-control" name="bols[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">by pass</span>
+                        <select class="form-control" name="bp[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">extravasates</span>
+                        <select class="form-control" name="e[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 2 END -->
+                  <!-- Dropdown menu 3 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">regeneration of</span>
+                        <select class="form-control" name="r[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">early uptake in</span>
+                        <select class="form-control" name="eu[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">lym.nodes dimin</span>
+                        <select class="form-control" name="lnd[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 3 END -->
+                  <!-- Dropdown menu 4 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">lym.nodes enlar</span>
+                        <select class="form-control" name="lnu[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">changes in lym.</span>
+                        <select class="form-control" name="cil[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">bean</option>
+                          <option value="2">oval</option>
+                          <option value="3">round</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">defect in node</span>
+                        <select class="form-control" name="din[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">lacunar</option>
+                          <option value="3">lac. marginal</option>
+                          <option value="4">lac. central</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 4 END -->
+                  <!-- Dropdown menu 5 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">changes in node</span>
+                        <select class="form-control" name="cin[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">lacunar</option>
+                          <option value="3">lac. margin</option>
+                          <option value="4">lac. central</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">changes in stru</span>
+                        <select class="form-control" name="cis[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">grainy</option>
+                          <option value="3">drop-like</option>
+                          <option value="4">coarse</option>
+                          <option value="5">diluted</option>
+                          <option value="6">reticular</option>
+                          <option value="7">stripped</option>
+                          <option value="8">faint</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">special forms</span>
+                        <select class="form-control" name="sf[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">chalices</option>
+                          <option value="3">vesicles</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 5 END -->
+                  <!-- Dropdown menu 6 START -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">dislocation of</span>
+                        <select class="form-control" name="do[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">exclusion of no</span>
+                        <select class="form-control" name="eon[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">no</option>
+                          <option value="2">yes</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-label">no. of nodes in</span>
+                        <select class="form-control" name="nodes[]">
+                          <option value="" selected disabled hidden>
+                            Choose here
+                          </option>
+                          <option value="1">0-9</option>
+                          <option value="2">10-19</option>
+                          <option value="3">20-29</option>
+                          <option value="4">30-39</option>
+                          <option value="5">40-49</option>
+                          <option value="6">50-59</option>
+                          <option value="7">60-69</option>
+                          <option value="8">>=70</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Dropdown menu 6 END -->
+                  <div class="form-btn">
+                    <button type="submit" class="submit-btn">
+                      Predict Now
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  </body>
+  <!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
