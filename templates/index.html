@@ -50,13 +50,16 @@
                   hasil klasifikasi: normal find, metastases, malign lymph,
                   fibrosis.
                 </p>
+                <!-- Prediction START -->
                 <h2>Hasil Prediksi</h2>
-                <h3 id="res">{{prediction}}</h3>
+                <h3 id="res">{{ prediction_text }}</h3>
+                <!-- PREDICTION END -->
               </div>
             </div>
             <div class="col-md-7 col-md-offset-1">
               <div class="classification-form">
-                <form action="{{ url_for('predict') }}" method="post">
+                <!-- FORM START -->
+                <form action="" method="post">
                   <!-- Dropdown menu 1 START -->
                   <div class="row">
                     <div class="col-md-4">
@@ -345,6 +348,7 @@
                     </button>
                   </div>
                 </form>
+                <!-- FORM END -->
               </div>
             </div>
           </div>
