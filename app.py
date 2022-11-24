@@ -22,14 +22,12 @@ def predict():
     # Prediksi class object dengan model yang telah dibuat
     prediction = model.predict(features)
     # Karena class prediksi berupa int, ubah ke bentuk tulisan
-    if(prediction==[1]):
+    if(prediction==[0]):
         res = "Normal Find"
-    elif(prediction==[2]):
+    elif(prediction==[1]):
         res = "Metastases"
-    elif(prediction==[3]):
+    elif(prediction==[1]):
         res = "Malign lymph"
-    elif(prediction==[4]):
-        res = "Fibrosis"
     # Mengembalikan hasil prediksi ke index.html dalam variabel result
     return render_template("index.html", result = "{}".format(res))
 
