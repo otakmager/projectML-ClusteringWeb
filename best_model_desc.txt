@@ -1,0 +1,6 @@
+Last update: 24 Nov 2022 20:16 WIB (GMT+7)
+Every running ipynb file from beginning will change the cluster
+best_model.pkl
+- cluster 0 = Rosa Wheat
+- cluster 1 = Canadian Wheat
+- cluster 2 = Kama Wheat
