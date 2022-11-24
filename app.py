@@ -23,11 +23,11 @@ def predict():
     prediction = model.predict(features)
     # Karena class prediksi berupa int, ubah ke bentuk tulisan
     if(prediction==[0]):
-        res = "Normal Find"
+        res = "Rosa Wheat"
     elif(prediction==[1]):
-        res = "Metastases"
+        res = "Canadian Wheat"
     elif(prediction==[1]):
-        res = "Malign lymph"
+        res = "Kama Wheat"
     # Mengembalikan hasil prediksi ke index.html dalam variabel result
     return render_template("index.html", result = "{}".format(res))
 
