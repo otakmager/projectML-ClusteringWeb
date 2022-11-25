@@ -13,20 +13,21 @@ def home():
     return render_template('index.html')
 
 # Routing /prediksi -> prediksi class object
+a = ""
 @app.route("/predict", methods=["POST"])
 def predict():
-    # Simpan data fitur object dalam array dan diubah ke integer 
-    int_features = np.array([int(x) for x in request.form.values()])
+    # Simpan data fitur object dalam array dan diubah ke float 
+    float_features = np.array([float(x) for x in request.form.values()])
     # Buat dalam array 2D karena model hanya menerima 2D array
-    features = np.array([int_features])
+    features = np.array([float_features])
     # Prediksi class object dengan model yang telah dibuat
     prediction = model.predict(features)
-    # Karena class prediksi berupa int, ubah ke bentuk tulisan
-    if(prediction==[0]):
+    # Karena class prediksi berupa int, ubah ke bentuk 
+    if(prediction==np.array([0])):
         res = "Rosa Wheat"
-    elif(prediction==[1]):
+    elif(prediction==np.array([1])):
         res = "Canadian Wheat"
-    elif(prediction==[1]):
+    elif(prediction==np.array([2])):
         res = "Kama Wheat"
     # Mengembalikan hasil prediksi ke index.html dalam variabel result
     return render_template("index.html", result = "{}".format(res))
