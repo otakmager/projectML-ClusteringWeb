@@ -41,7 +41,7 @@ Make python environment
 ```
 py -3 -m venv venv
 ```
-Activate the environemnet
+Activate the environment
 ```
 venv\Scripts\activate
 ```
