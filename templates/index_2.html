@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project ML - Clustering</title>
+
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap  CSS -->
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    /> -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+
+    <!-- Custom stlylesheet -->
+    <!-- <link rel="stylesheet" href="../static/css/myStyle.css" /> -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/myStyle.css') }}"
+    />
+  </head>
+
+  <body class="">
+    <div id="overlay">
+      <section class="container px-4">
+        <div class="row p-0 g-lg-5">
+          <div id="left-side" class="col-12 col-lg-4 d-flex flex-column">
+            <h1 class="text-center">Wheat Variety Prediction</h1>
+            <p>
+              Dataset yang digunakan adalah sebuah dataset hasil penelitian
+              terhadap 3 jenis varietas gandum yang berbeda, antara lain Kama,
+              Rosa, dan Candaian. Masing-masing varietas terdapat 70 data yang
+              dipilih secara acak dalam percobaan penelitian dengan menggunakan
+              bantuan sinar-X yang tidak merusak dan alat pencitraan yang
+              canggih.
+            </p>
+            <div id="result-container flex">
+              <h2 class="d-inline-block">Hasil Prediksi :</h2>
+              <h4 class="d-inline-block" id="res">{{ result }}</h4>
+            </div>
+          </div>
+          <div
+            id="right-side"
+            class="col-12 col-lg-8 rounded py-3 px-2 px-md-3 py-md-4 px-lg-4 py-lg-4"
+          >
+            <form action="/predict" method="post">
+              <div id="input-fields" class="container p-0">
+                <div class="row row-cols-md-2">
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Area</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="area"
+                      id="area"
+                      required
+                      placeholder="ex: 16.14"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Perimeter</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="perimeter"
+                      id="perimeter"
+                      required
+                      placeholder="ex: 14.99"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Compactness</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="compactness"
+                      id="compactness"
+                      required
+                      placeholder="ex: 0.9034"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Length of Kernel</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="lengthOfKernel"
+                      id="lengthOfKernel"
+                      required
+                      placeholder="ex: 5.658"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Width of Kernel</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="widthOfKernel"
+                      id="widthOfKernel"
+                      required
+                      placeholder="ex: 3.562"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Asymmetry Coefficient</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="asymmetryCoefficient"
+                      id="asymmetryCoefficient"
+                      required
+                      placeholder="ex: 1.355"
+                    />
+                  </div>
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <span>Length Of Kernel Groove</span>
+                    <input
+                      class="px-2 rounded border-0 py-1"
+                      type="number"
+                      step="0.0001"
+                      name="lengthOfKernelGroove"
+                      id="lengthOfKernelGroove"
+                      required
+                      placeholder="ex: 5.175"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">Predict Now</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Bootstrap  Script -->
+    <link
+      type="text/javascript"
+      rel="script"
+      href="{{ url_for('static', filename='css/bootstrap.min.js') }}"
+    />
+  </body>
+</html>
