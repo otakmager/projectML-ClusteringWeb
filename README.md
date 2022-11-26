@@ -41,6 +41,10 @@ Make python environment
 ```
 py -3 -m venv venv
 ```
+Activate the environemnet
+```
+venv\Scripts\activate
+```
 Make sure you have installed numpy, pandas, and scikit learn, if not you must install with this prompt in CMD
 ```
 pip install numpy
