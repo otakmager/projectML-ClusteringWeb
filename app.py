@@ -10,7 +10,7 @@ model = pickle.load(open("best_model.pkl", "rb"))
 # Routing aplikasi awal -> menampilkan index page
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('index_2.html')
 
 # Routing /prediksi -> prediksi class object
 a = ""
@@ -30,7 +30,7 @@ def predict():
     elif(prediction==np.array([2])):
         res = "Kama Wheat"
     # Mengembalikan hasil prediksi ke index.html dalam variabel result
-    return render_template("index.html", result = "{}".format(res))
+    return render_template("index_2.html", result = "{}".format(res))
 
 # Menjalankan aplikasi dengan konfigurasi host dan debug mode
 if __name__ == "__main__":
