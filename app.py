@@ -13,7 +13,6 @@ def home():
     return render_template('index_2.html')
 
 # Routing /prediksi -> prediksi class object
-a = ""
 @app.route("/predict", methods=["POST"])
 def predict():
     # Simpan data fitur object dalam array dan diubah ke float 
