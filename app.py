@@ -6,6 +6,7 @@ import pickle
 # Inisialisasi aplikasi and model prediction
 app = Flask(__name__)
 model = pickle.load(open("best_model.pkl", "rb"))
+new_model = pickle.load(open("rev_model.pkl", "rb"))
 
 # Routing aplikasi awal -> menampilkan index page
 @app.route("/")
@@ -16,16 +17,29 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
     # Simpan data fitur object dalam array dan diubah ke float 
-    float_features = np.array([float(x) for x in request.form.values()])
+    area = float(request.form.get('area'))
+    perimeter = float(request.form.get('perimeter'))
+    compactness = float(request.form.get('compactness'))
+    lengthOfKernel = float(request.form.get('lengthOfKernel'))
+    widthOfKernel = float(request.form.get('widthOfKernel'))
+    asymmetryCoefficient = float(request.form.get('asymmetryCoefficient'))
+    lengthOfKernelGroove = float(request.form.get('lengthOfKernelGroove'))
+
+
+    # float_features = np.array([float(x) for x in request.form.values()])
+
+    #REV:
+    float_features = np.array([area, perimeter, lengthOfKernel, widthOfKernel, lengthOfKernelGroove])
+
     # Buat dalam array 2D karena model hanya menerima 2D array
     features = np.array([float_features])
     # Prediksi class object dengan model yang telah dibuat
     prediction = model.predict(features)
     # Karena class prediksi berupa int, ubah ke bentuk 
     if(prediction==np.array([0])):
-        res = "Rosa Wheat"
-    elif(prediction==np.array([1])):
         res = "Canadian Wheat"
+    elif(prediction==np.array([1])):
+        res = "Rosa Wheat"
     elif(prediction==np.array([2])):
         res = "Kama Wheat"
     # Mengembalikan hasil prediksi ke index.html dalam variabel result
