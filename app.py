@@ -6,7 +6,7 @@ import pickle
 # Inisialisasi aplikasi and model prediction
 app = Flask(__name__)
 model = pickle.load(open("best_model.pkl", "rb"))
-new_model = pickle.load(open("rev_model.pkl", "rb"))
+rev_model = pickle.load(open("rev_model.pkl", "rb"))
 
 # Routing aplikasi awal -> menampilkan index page
 @app.route("/")
@@ -34,7 +34,9 @@ def predict():
     # Buat dalam array 2D karena model hanya menerima 2D array
     features = np.array([float_features])
     # Prediksi class object dengan model yang telah dibuat
-    prediction = model.predict(features)
+    # prediction = model.predict(features)
+    prediction = rev_model.predict(features)
+
     # Karena class prediksi berupa int, ubah ke bentuk 
     if(prediction==np.array([0])):
         res = "Canadian Wheat"
